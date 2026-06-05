@@ -590,12 +590,15 @@ document.querySelectorAll('.pills').forEach(group=>{
     pill.addEventListener('click',()=>{
       const inp=pill.querySelector('input');
       if(inp.type==='radio'){
+        // uncheck all radios in this group, then check this one
+        group.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
         group.querySelectorAll('.pill').forEach(p=>p.classList.remove('sel'));
         pill.classList.add('sel');
+        inp.checked=true;
       } else {
         pill.classList.toggle('sel');
+        inp.checked=pill.classList.contains('sel');
       }
-      inp.checked=!inp.checked;
       updateProgress();
     });
   });
@@ -657,11 +660,20 @@ function updateProgress(){
 // ── Save as JSON ──────────────────────────────────────
 function saveJSON(){
   const data={};
+
+  // All regular inputs, selects, textareas
   document.querySelectorAll('#form [name]').forEach(el=>{
     if(!el.name)return;
     if((el.type==='radio'||el.type==='checkbox')&&!el.checked)return;
     data[el.name]=el.value;
   });
+
+  // SS toggle button state (not a radio — capture from active class)
+  data.c_ss_collecting = document.querySelector('#s4 .sub:nth-child(2) .ss-btn.on-yes') ? 'yes'
+                       : document.querySelector('#s4 .sub:nth-child(2) .ss-btn.on-no')  ? 'no' : '';
+  data.s_ss_collecting = document.querySelector('#s4 .sub:nth-child(3) .ss-btn.on-yes') ? 'yes'
+                       : document.querySelector('#s4 .sub:nth-child(3) .ss-btn.on-no')  ? 'no' : '';
+
   data._saved=new Date().toISOString();
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const a=document.createElement('a');
