@@ -97,6 +97,10 @@ body{font-family:'Barlow',sans-serif;background:var(--navy-faint);color:var(--te
 input[style*="rgba(255,255,255,.15)"]::placeholder{color:rgba(255,255,255,.55)}
 .f input.done,.f select.done,.f textarea.done{border-color:var(--navy);background:var(--white)}
 .f .hint{font-size:10px;color:var(--g4);font-style:italic}
+.f .hint-warn{font-size:10px;font-weight:600;color:var(--orange);display:flex;align-items:center;gap:4px;margin-top:3px}
+.f .hint-warn::before{content:'⚠';font-style:normal}
+.f input:not([value=""]):valid ~ .hint-warn,
+.f input.done ~ .hint-warn{display:none}
 .f-dollar{position:relative}
 .f-dollar input{padding-left:22px}
 .f-dollar::before{content:'$';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--g4);pointer-events:none;z-index:1;margin-top:10px}
@@ -265,22 +269,44 @@ input[style*="rgba(255,255,255,.15)"]::placeholder{color:rgba(255,255,255,.55)}
           <label style="color:rgba(255,255,255,.85)">Required Income While Working ($/mo) <span class="r" style="color:var(--white)">*</span></label>
           <input type="number" name="income_working" placeholder="e.g. 8000" data-req style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);font-size:16px;height:42px;">
           <span style="font-size:10px;color:rgba(255,255,255,.7);font-style:italic">Monthly gross income needed today</span>
+          <span class="income-warn" id="warn_income_working" style="font-size:10px;font-weight:700;color:#ffe0d6;margin-top:2px">⚠ If already retired, enter 0 — do not leave blank</span>
         </div>
         <div class="f">
           <label style="color:rgba(255,255,255,.85)">Required Income In Retirement ($/mo) <span class="r" style="color:var(--white)">*</span></label>
           <input type="number" name="income_retire" placeholder="e.g. 6000" data-req style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);font-size:16px;height:42px;">
           <span style="font-size:10px;color:rgba(255,255,255,.7);font-style:italic">Monthly income goal in retirement</span>
+          <span class="income-warn" id="warn_income_retire" style="font-size:10px;font-weight:700;color:#ffe0d6;margin-top:2px">⚠ Required — blank causes analysis to project $0 spending (meaningless report)</span>
         </div>
       </div>
     </div>
 
     <!-- Remaining goal fields -->
     <div class="g g2">
-      <div class="f"><label>Client Target Retirement Age <span class="r">*</span></label><input type="number" name="c_ret_age" placeholder="e.g. 67" min="50" max="85" data-req></div>
-      <div class="f"><label>Spouse Target Retirement Age</label><input type="number" name="s_ret_age" placeholder="e.g. 65" min="50" max="85"></div>
-      <div class="f"><label>Client Planning Horizon (to age)</label><input type="number" name="c_horizon" placeholder="e.g. 90" min="70" max="105"></div>
-      <div class="f"><label>Spouse Planning Horizon (to age)</label><input type="number" name="s_horizon" placeholder="e.g. 88" min="70" max="105"></div>
-      <div class="f s2"><label>Legacy / Inheritance Goal</label><input type="text" name="legacy" placeholder="e.g. remainder after last spouse dies, or $500,000 to children"></div>
+      <div class="f">
+          <label>Client Target Retirement Age <span class="r">*</span></label>
+          <input type="number" name="c_ret_age" placeholder="e.g. 67" min="50" max="85" data-req>
+          <div class="hint-warn">Required — blank will cause the analysis to fail or use wrong defaults</div>
+        </div>
+        <div class="f">
+          <label>Spouse Target Retirement Age</label>
+          <input type="number" name="s_ret_age" placeholder="e.g. 65" min="50" max="85">
+          <div class="hint-warn">Recommended — leave blank only if no spouse</div>
+        </div>
+        <div class="f">
+          <label>Client Planning Horizon (to age)</label>
+          <input type="number" name="c_horizon" placeholder="e.g. 90" min="70" max="105">
+          <div class="hint-warn">Required for projection — suggest age 90 if unsure</div>
+        </div>
+        <div class="f">
+          <label>Spouse Planning Horizon (to age)</label>
+          <input type="number" name="s_horizon" placeholder="e.g. 88" min="70" max="105">
+          <div class="hint-warn">Required for projection — suggest age 88 if unsure</div>
+        </div>
+        <div class="f s2">
+          <label>Legacy / Inheritance Goal</label>
+          <input type="text" name="legacy" placeholder="e.g. Remainder after last spouse dies, or $500,000 to children">
+          <div class="hint-warn">Enter a clear statement — do not leave as a name or leave blank; this feeds directly into the report</div>
+        </div>
     </div>
 
   </div>
@@ -572,7 +598,7 @@ input[style*="rgba(255,255,255,.15)"]::placeholder{color:rgba(255,255,255,.55)}
   </div>
   <div class="sc-body">
     <div class="g g2">
-      <div class="f"><label>Analyst Name <span class="r">*</span></label><input type="text" name="analyst" placeholder="Advisor name" data-req></div>
+      <div class="f"><label>Analyst Name <span class="r">*</span></label><input type="text" name="analyst" placeholder="Advisor name" data-req><div class="hint-warn">Required — identifies who prepared this intake</div></div>
       <div class="f"><label>Date Completed <span class="r">*</span></label><input type="date" name="date_complete" data-req></div>
       <div class="f sf"><label>Special Circumstances, Planning Flags, or Client Instructions</label><textarea name="notes" placeholder="Document any special considerations, concerns, or instructions for the analysis…" style="height:140px"></textarea></div>
     </div>
@@ -717,14 +743,32 @@ function clearForm(){
   updateProgress();
 }
 
+// ── Hide warnings when fields are filled ─────────────────
+function updateWarnings(){
+  // Orange callout income warnings
+  const iw=document.querySelector('[name=income_working]');
+  const ir=document.querySelector('[name=income_retire]');
+  const wIW=document.getElementById('warn_income_working');
+  const wIR=document.getElementById('warn_income_retire');
+  if(wIW) wIW.style.display=(iw&&iw.value.trim()!=='')?'none':'';
+  if(wIR) wIR.style.display=(ir&&ir.value.trim()!=='')?'none':'';
+  // All .hint-warn divs — hide when the input in the same .f has a value
+  document.querySelectorAll('.hint-warn').forEach(hw=>{
+    const inp=hw.closest('.f')?.querySelector('input,select,textarea');
+    if(inp) hw.style.display=inp.value.trim()!==''?'none':'';
+  });
+}
+
 // ── Init ──────────────────────────────────────────────
 document.querySelectorAll('.f input,.f select,.f textarea').forEach(el=>{
-  el.addEventListener('input', updateProgress);
+  el.addEventListener('input', ()=>{ updateProgress(); updateWarnings(); });
+  el.addEventListener('change', ()=>{ updateProgress(); updateWarnings(); });
 });
 // Set today's date on completion field
 const dc=document.querySelector('[name=date_complete]');
 if(dc) dc.value=new Date().toISOString().slice(0,10);
 updateProgress();
+updateWarnings();
 calcTotals();
 </script>
 
