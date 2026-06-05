@@ -477,7 +477,8 @@ input[style*="rgba(255,255,255,.15)"]::placeholder{color:rgba(255,255,255,.55)}
         <div class="f"><label>Client IRA Balance (Traditional)</label><input type="number" name="c_ira" placeholder="e.g. 320000" oninput="calcTotals()"></div>
         <div class="f"><label>Client 401(k) Balance</label><input type="number" name="c_401k" placeholder="e.g. 50000" oninput="calcTotals()"></div>
         <div class="f"><label>Client Roth IRA Balance</label><input type="number" name="c_roth" placeholder="e.g. 0" oninput="calcTotals()"></div>
-        <div class="f"><label>Client Taxable Brokerage</label><input type="number" name="c_brok" placeholder="e.g. 80000" oninput="calcTotals()"></div>
+        <div class="f"><label>Client Managed Brokerage ($)</label><input type="number" name="c_brok" placeholder="e.g. 515000" oninput="calcTotals()"><div class="hint">Managed investment / brokerage account</div></div>
+        <div class="f"><label>Client Money Market ($)</label><input type="number" name="c_mm" placeholder="e.g. 800000" oninput="calcTotals()"><div class="hint">Money market — not managed, liquid</div></div>
         <div class="f"><label>Client Annuity Balance (tax-deferred)</label><input type="number" name="c_ann" placeholder="e.g. 0" oninput="calcTotals()"></div>
         <div class="f"><label>Other Client Account Label</label><input type="text" name="c_other_lbl" placeholder="Account name"></div>
         <div class="f"><label>Other Client Account Balance</label><input type="number" name="c_other" placeholder="e.g. 0" oninput="calcTotals()"></div>
@@ -676,7 +677,7 @@ function fmt(v){ return '$'+Math.round(v).toLocaleString(); }
 function calcTotals(){
   const preTax = n('c_ira')+n('s_ira')+n('c_401k')+n('s_401k')+n('inh_ira');
   const roth   = n('c_roth')+n('s_roth');
-  const taxable= n('c_brok')+n('s_brok')+n('cash');
+  const taxable= n('c_brok')+n('c_mm')+n('s_brok')+n('cash');
   const ann    = n('c_ann')+n('s_ann');
   const other  = n('c_other')+n('s_other');
   const invest = preTax+roth+taxable+ann+other;
