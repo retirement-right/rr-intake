@@ -94,6 +94,7 @@ body{font-family:'Barlow',sans-serif;background:var(--navy-faint);color:var(--te
 .f textarea{height:100px;padding:9px 11px;resize:vertical}
 .f select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23003C64'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px}
 .f input:focus,.f select:focus,.f textarea:focus{border-color:var(--orange);background:var(--white);box-shadow:0 0 0 3px rgba(240,80,40,.11)}
+input[style*="rgba(255,255,255,.15)"]::placeholder{color:rgba(255,255,255,.55)}
 .f input.done,.f select.done,.f textarea.done{border-color:var(--navy);background:var(--white)}
 .f .hint{font-size:10px;color:var(--g4);font-style:italic}
 .f-dollar{position:relative}
@@ -248,22 +249,40 @@ body{font-family:'Barlow',sans-serif;background:var(--navy-faint);color:var(--te
 </div>
 
 <!-- ══ 2. RETIREMENT GOALS ═══════════════════════════ -->
-<div class="sc" id="s2">
+<div class="sc open" id="s2">
   <div class="sc-hdr" onclick="tog('s2')">
     <div class="sc-accent"></div>
-    <div class="sc-hdr-inner"><span class="sc-num">02</span><span class="sc-title">Retirement Goals</span></div>
+    <div class="sc-hdr-inner"><span class="sc-num">02</span><span class="sc-title">Retirement Goals &amp; Income Needs</span></div>
     <span class="sc-chev">&#9660;</span>
   </div>
   <div class="sc-body">
-    <div class="g g3">
+
+    <!-- Income needs — highlighted callout at top -->
+    <div style="background:var(--orange);border-radius:var(--r);padding:14px 18px;margin-bottom:18px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;">&#9888; Required — Income Information</div>
+      <div class="g g2">
+        <div class="f">
+          <label style="color:rgba(255,255,255,.85)">Required Income While Working ($/mo) <span class="r" style="color:var(--white)">*</span></label>
+          <input type="number" name="income_working" placeholder="e.g. 8000" data-req style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);font-size:16px;height:42px;">
+          <span style="font-size:10px;color:rgba(255,255,255,.7);font-style:italic">Monthly gross income needed today</span>
+        </div>
+        <div class="f">
+          <label style="color:rgba(255,255,255,.85)">Required Income In Retirement ($/mo) <span class="r" style="color:var(--white)">*</span></label>
+          <input type="number" name="income_retire" placeholder="e.g. 6000" data-req style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4);color:var(--white);font-size:16px;height:42px;">
+          <span style="font-size:10px;color:rgba(255,255,255,.7);font-style:italic">Monthly income goal in retirement</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Remaining goal fields -->
+    <div class="g g2">
       <div class="f"><label>Client Target Retirement Age <span class="r">*</span></label><input type="number" name="c_ret_age" placeholder="e.g. 67" min="50" max="85" data-req></div>
       <div class="f"><label>Spouse Target Retirement Age</label><input type="number" name="s_ret_age" placeholder="e.g. 65" min="50" max="85"></div>
-      <div class="f"><label>Required Income While Working ($/mo) <span class="r">*</span></label><input type="number" name="income_working" placeholder="e.g. 8000" data-req></div>
-      <div class="f"><label>Required Income In Retirement ($/mo) <span class="r">*</span></label><input type="number" name="income_retire" placeholder="e.g. 6000" data-req></div>
       <div class="f"><label>Client Planning Horizon (to age)</label><input type="number" name="c_horizon" placeholder="e.g. 90" min="70" max="105"></div>
       <div class="f"><label>Spouse Planning Horizon (to age)</label><input type="number" name="s_horizon" placeholder="e.g. 88" min="70" max="105"></div>
-      <div class="f s3"><label>Legacy / Inheritance Goal</label><input type="text" name="legacy" placeholder="e.g. Leave 00,000 to children"></div>
+      <div class="f s2"><label>Legacy / Inheritance Goal</label><input type="text" name="legacy" placeholder="e.g. remainder after last spouse dies, or $500,000 to children"></div>
     </div>
+
   </div>
 </div>
 
