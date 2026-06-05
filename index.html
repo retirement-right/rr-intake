@@ -697,57 +697,118 @@
     <div class="section-title">Social Security</div>
   </div>
   <div class="section-body">
-    <div class="info-box"><strong>Tip:</strong> Monthly benefit amounts come from the client's SSA statement. Planned claiming age is a key planning decision — confirm with client before entering.</div>
+    <div class="info-box"><strong>Tip:</strong> If client or spouse is already collecting, select "Yes — Currently Collecting" and enter the actual current monthly benefit. The FRA estimate and claiming age fields are not needed in that case. If not yet collecting, enter the FRA benefit from the SSA statement and the planned claiming age.</div>
 
+    <!-- CLIENT SS -->
     <div class="subsection-label">Client Social Security</div>
-    <div class="grid-3">
+    <div class="grid-2" style="margin-bottom:10px;">
       <div class="field">
-        <label>Monthly Benefit at FRA <span class="req">*</span></label>
-        <div class="input-prefix">
-          <input type="number" name="client_ss_fra" placeholder="3,000" min="0">
-        </div>
-      </div>
-      <div class="field">
-        <label>Full Retirement Age (FRA) <span class="req">*</span></label>
-        <input type="number" name="client_fra" placeholder="67" min="62" max="70">
-      </div>
-      <div class="field">
-        <label>Planned Claiming Age <span class="req">*</span></label>
-        <input type="number" name="client_claim_age" placeholder="67" min="62" max="70">
-      </div>
-      <div class="field">
-        <label>Currently Collecting SS?</label>
+        <label>Is Client Currently Collecting SS? <span class="req">*</span></label>
         <div class="check-group">
-          <label class="check-item"><input type="radio" name="client_ss_collecting" value="yes"><span>Yes</span></label>
-          <label class="check-item"><input type="radio" name="client_ss_collecting" value="no" checked><span>No</span></label>
+          <label class="check-item"><input type="radio" name="client_ss_collecting" value="yes" onchange="toggleSS('client',true)"><span>Yes — Currently Collecting</span></label>
+          <label class="check-item"><input type="radio" name="client_ss_collecting" value="no" checked onchange="toggleSS('client',false)"><span>No — Not Yet Collecting</span></label>
         </div>
       </div>
     </div>
 
-    <div class="subsection-label">Spouse Social Security</div>
-    <div class="grid-3">
-      <div class="field">
-        <label>Monthly Benefit at FRA</label>
-        <div class="input-prefix">
-          <input type="number" name="spouse_ss_fra" placeholder="2,800" min="0">
+    <!-- Client: Currently Collecting fields -->
+    <div id="client_ss_collecting_fields" style="display:none;">
+      <div class="info-box" style="border-color:#C8922A;background:#fff8ee;">
+        <strong>Currently Collecting:</strong> Enter the actual benefit amount received today. The age adjustment has already been applied — no FRA or claim age needed.
+      </div>
+      <div class="grid-3" style="margin-top:10px;">
+        <div class="field">
+          <label>Current Monthly Benefit <span class="req">*</span> <span class="hint">actual amount received</span></label>
+          <div class="input-prefix">
+            <input type="number" name="client_ss_current_benefit" placeholder="1,700" min="0">
+          </div>
         </div>
-      </div>
-      <div class="field">
-        <label>Full Retirement Age (FRA)</label>
-        <input type="number" name="spouse_fra" placeholder="67" min="62" max="70">
-      </div>
-      <div class="field">
-        <label>Planned Claiming Age</label>
-        <input type="number" name="spouse_claim_age" placeholder="65" min="62" max="70">
-      </div>
-      <div class="field">
-        <label>Currently Collecting SS?</label>
-        <div class="check-group">
-          <label class="check-item"><input type="radio" name="spouse_ss_collecting" value="yes"><span>Yes</span></label>
-          <label class="check-item"><input type="radio" name="spouse_ss_collecting" value="no" checked><span>No</span></label>
+        <div class="field">
+          <label>Age When First Collected <span class="hint">optional</span></label>
+          <input type="number" name="client_ss_collect_start_age" placeholder="e.g. 62" min="62" max="70">
+        </div>
+        <div class="field">
+          <label>Year Started Collecting <span class="hint">optional</span></label>
+          <input type="number" name="client_ss_collect_start_year" placeholder="e.g. 2024" min="2000" max="2030">
         </div>
       </div>
     </div>
+
+    <!-- Client: Not yet collecting fields -->
+    <div id="client_ss_future_fields">
+      <div class="grid-3">
+        <div class="field">
+          <label>Monthly Benefit at FRA <span class="req">*</span> <span class="hint">from SSA statement</span></label>
+          <div class="input-prefix">
+            <input type="number" name="client_ss_fra" placeholder="3,000" min="0">
+          </div>
+        </div>
+        <div class="field">
+          <label>Full Retirement Age (FRA) <span class="req">*</span></label>
+          <input type="number" name="client_fra" placeholder="67" min="62" max="70">
+        </div>
+        <div class="field">
+          <label>Planned Claiming Age <span class="req">*</span></label>
+          <input type="number" name="client_claim_age" placeholder="67" min="62" max="70">
+        </div>
+      </div>
+    </div>
+
+    <!-- SPOUSE SS -->
+    <div class="subsection-label" style="margin-top:20px;">Spouse Social Security</div>
+    <div class="grid-2" style="margin-bottom:10px;">
+      <div class="field">
+        <label>Is Spouse Currently Collecting SS?</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="spouse_ss_collecting" value="yes" onchange="toggleSS('spouse',true)"><span>Yes — Currently Collecting</span></label>
+          <label class="check-item"><input type="radio" name="spouse_ss_collecting" value="no" checked onchange="toggleSS('spouse',false)"><span>No — Not Yet Collecting</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spouse: Currently Collecting fields -->
+    <div id="spouse_ss_collecting_fields" style="display:none;">
+      <div class="info-box" style="border-color:#C8922A;background:#fff8ee;">
+        <strong>Currently Collecting:</strong> Enter the actual benefit amount received today. No FRA or claim age needed.
+      </div>
+      <div class="grid-3" style="margin-top:10px;">
+        <div class="field">
+          <label>Current Monthly Benefit <span class="hint">actual amount received</span></label>
+          <div class="input-prefix">
+            <input type="number" name="spouse_ss_current_benefit" placeholder="1,400" min="0">
+          </div>
+        </div>
+        <div class="field">
+          <label>Age When First Collected <span class="hint">optional</span></label>
+          <input type="number" name="spouse_ss_collect_start_age" placeholder="e.g. 62" min="62" max="70">
+        </div>
+        <div class="field">
+          <label>Year Started Collecting <span class="hint">optional</span></label>
+          <input type="number" name="spouse_ss_collect_start_year" placeholder="e.g. 2025" min="2000" max="2030">
+        </div>
+      </div>
+    </div>
+
+    <!-- Spouse: Not yet collecting fields -->
+    <div id="spouse_ss_future_fields">
+      <div class="grid-3">
+        <div class="field">
+          <label>Monthly Benefit at FRA <span class="hint">from SSA statement</span></label>
+          <div class="input-prefix">
+            <input type="number" name="spouse_ss_fra" placeholder="2,800" min="0">
+          </div>
+        </div>
+        <div class="field">
+          <label>Full Retirement Age (FRA)</label>
+          <input type="number" name="spouse_fra" placeholder="67" min="62" max="70">
+        </div>
+        <div class="field">
+          <label>Planned Claiming Age</label>
+          <input type="number" name="spouse_claim_age" placeholder="65" min="62" max="70">
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1101,6 +1162,21 @@
 </div>
 
 <script>
+  // ── SS TOGGLE ──
+  function toggleSS(who, collecting) {
+    const collectingFields = document.getElementById(who + '_ss_collecting_fields');
+    const futureFields = document.getElementById(who + '_ss_future_fields');
+    if (collecting) {
+      collectingFields.style.display = 'block';
+      futureFields.style.display = 'none';
+    } else {
+      collectingFields.style.display = 'none';
+      futureFields.style.display = 'block';
+    }
+    // re-save state
+    try { sessionStorage.setItem('rr_intake_v1', JSON.stringify(serializeForm())); } catch(e) {}
+  }
+
   // ── AUTO-SAVE to localStorage ──
   const FORM_KEY = 'rr_intake_v1';
   const form = document.getElementById('intakeForm');
@@ -1222,6 +1298,11 @@
 
   // ── INIT ──
   loadSaved();
+  // Restore SS toggle state after load
+  const clientCollecting = form.querySelector('[name="client_ss_collecting"]:checked');
+  if (clientCollecting) toggleSS('client', clientCollecting.value === 'yes');
+  const spouseCollecting = form.querySelector('[name="spouse_ss_collecting"]:checked');
+  if (spouseCollecting) toggleSS('spouse', spouseCollecting.value === 'yes');
   updateProgress();
   updateTotals();
 </script>
