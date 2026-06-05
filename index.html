@@ -376,11 +376,12 @@ input[style*="rgba(255,255,255,.15)"]::placeholder{color:rgba(255,255,255,.55)}
         <button type="button" class="ss-btn" onclick="setSS('c','no')">No — Not Yet Collecting</button>
       </div>
       <div class="ss-cond" id="c_ss_yes">
-        <div class="g g3">
+        <div class="tip" style="margin-bottom:10px"><strong>Currently Collecting:</strong> Enter the actual benefit received today. Growth will be projected using the SS COLA rate below — typically 2% annually.</div>
+        <div class="g g4">
           <div class="f"><label>Current Monthly Benefit <span class="r">*</span></label><input type="number" name="c_ss_current" placeholder="Actual amount received"></div>
           <div class="f"><label>Age When First Collected</label><input type="number" name="c_ss_start_age" placeholder="e.g. 62"></div>
           <div class="f"><label>Year Started Collecting</label><input type="number" name="c_ss_start_yr" placeholder="e.g. 2021"></div>
-          <div class="f"><label>Planned Start Date</label><input type="text" name="c_ss_start_date" placeholder="e.g. Jan 2028"></div>
+          <div class="f"><label>SS COLA Rate % <span class="r">*</span></label><input type="number" name="c_ss_cola" value="2" step=".25" min="0" max="5"><div class="hint">Annual SS benefit increase — default 2%</div></div>
         </div>
       </div>
       <div class="ss-cond" id="c_ss_no">
@@ -400,11 +401,12 @@ input[style*="rgba(255,255,255,.15)"]::placeholder{color:rgba(255,255,255,.55)}
         <button type="button" class="ss-btn" onclick="setSS('s','no')">No — Not Yet Collecting</button>
       </div>
       <div class="ss-cond" id="s_ss_yes">
-        <div class="g g3">
+        <div class="tip" style="margin-bottom:10px"><strong>Currently Collecting:</strong> Enter the actual benefit received today. Growth will be projected using the SS COLA rate below — typically 2% annually.</div>
+        <div class="g g4">
           <div class="f"><label>Current Monthly Benefit</label><input type="number" name="s_ss_current" placeholder="Actual amount received"></div>
           <div class="f"><label>Age When First Collected</label><input type="number" name="s_ss_start_age" placeholder="e.g. 62"></div>
           <div class="f"><label>Year Started Collecting</label><input type="number" name="s_ss_start_yr" placeholder="e.g. 2021"></div>
-          <div class="f"><label>Planned Start Date</label><input type="text" name="s_ss_start_date" placeholder="e.g. Jan 2028"></div>
+          <div class="f"><label>SS COLA Rate %</label><input type="number" name="s_ss_cola" value="2" step=".25" min="0" max="5"><div class="hint">Annual SS benefit increase — default 2%</div></div>
         </div>
       </div>
       <div class="ss-cond" id="s_ss_no">
