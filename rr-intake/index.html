@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retirement-Right · Client Intake Questionnaire</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #162235;
+    --gold: #C8922A;
+    --gold-light: #E0A840;
+    --gold-pale: #FDF5E6;
+    --gray-100: #F7F8FA;
+    --gray-200: #EAECF0;
+    --gray-300: #D0D5DD;
+    --gray-500: #667085;
+    --gray-700: #344054;
+    --gray-900: #101828;
+    --red: #C0392B;
+    --white: #ffffff;
+    --radius: 6px;
+    --shadow: 0 1px 3px rgba(13,27,42,0.10), 0 1px 2px rgba(13,27,42,0.06);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #EEF0F4;
+    color: var(--gray-900);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--navy);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .logo-block { display: flex; align-items: center; gap: 12px; }
+  .logo-mark {
+    width: 42px; height: 42px;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--navy);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .logo-text { line-height: 1.2; }
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .logo-sub {
+    font-size: 9px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .header-title {
+    text-align: center;
+    flex: 1;
+  }
+  .header-title h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .header-title p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+  }
+  .confidential-badge {
+    background: rgba(200,146,42,0.15);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    padding: 4px 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar-wrap {
+    background: var(--navy-mid);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .progress-bar-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── FORM WRAPPER ── */
+  .form-wrap {
+    max-width: 960px;
+    margin: 28px auto 0;
+    padding: 0 16px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+  }
+  .section-header {
+    background: var(--navy);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid var(--gold);
+  }
+  .section-num {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 10px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Playfair Display', serif;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .section-subtitle {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    margin-left: auto;
+    letter-spacing: 0.05em;
+    font-style: italic;
+  }
+  .section-body { padding: 18px 20px 20px; }
+
+  /* ── SUBSECTION ── */
+  .subsection-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 20px 0 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--gold-pale);
+  }
+  .subsection-label:first-child { margin-top: 0; }
+
+  /* ── GRID ── */
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+  .col-span-2 { grid-column: span 2; }
+  .col-span-3 { grid-column: span 3; }
+
+  /* ── FIELD ── */
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-700);
+    letter-spacing: 0.02em;
+  }
+  .field label .req { color: var(--red); margin-left: 2px; }
+  .field label .hint {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gray-500);
+    font-size: 10px;
+    margin-left: 4px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="date"],
+  select,
+  textarea {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px;
+    color: var(--gray-900);
+    background: var(--gray-100);
+    border: 1px solid var(--gray-300);
+    border-radius: var(--radius);
+    padding: 7px 10px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(200,146,42,0.12);
+  }
+  input::placeholder, textarea::placeholder { color: var(--gray-300); font-style: italic; font-size: 11.5px; }
+  textarea { resize: vertical; min-height: 70px; }
+  select { cursor: pointer; }
+
+  /* Dollar prefix wrapper */
+  .input-prefix {
+    position: relative;
+  }
+  .input-prefix::before {
+    content: '$';
+    position: absolute;
+    left: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: var(--gray-500);
+    font-weight: 600;
+    pointer-events: none;
+  }
+  .input-prefix input { padding-left: 20px; }
+
+  .input-suffix {
+    position: relative;
+  }
+  .input-suffix::after {
+    content: '%';
+    position: absolute;
+    right: 9px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: var(--gray-500);
+    font-weight: 600;
+    pointer-events: none;
+  }
+  .input-suffix input { padding-right: 22px; }
+
+  /* ── CHECKBOX GROUP ── */
+  .check-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    padding: 6px 0 2px;
+    align-items: center;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .check-item input[type="checkbox"],
+  .check-item input[type="radio"] {
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid var(--gray-300);
+    border-radius: 3px;
+    background: var(--white);
+    cursor: pointer;
+    accent-color: var(--gold);
+    flex-shrink: 0;
+  }
+  .check-item span {
+    font-size: 12px;
+    color: var(--gray-700);
+    user-select: none;
+  }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    background: var(--gold-pale);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 11px;
+    color: var(--gray-700);
+    margin: 14px 0 4px;
+    line-height: 1.5;
+  }
+  .info-box strong { color: var(--navy); }
+
+  /* ── DIVIDER ── */
+  .divider { border: none; border-top: 1px solid var(--gray-200); margin: 18px 0; }
+
+  /* ── ACTION BAR ── */
+  .action-bar {
+    position: sticky;
+    bottom: 0;
+    background: var(--navy);
+    border-top: 2px solid var(--gold);
+    padding: 12px 24px;
+    z-index: 50;
+  }
+  .action-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .action-note {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    font-style: italic;
+  }
+  .btn-group { display: flex; gap: 10px; }
+  button {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 9px 22px;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.07); color: var(--white); }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(200,146,42,0.35); }
+  .btn-print {
+    background: transparent;
+    color: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .btn-print:hover { color: var(--white); border-color: rgba(255,255,255,0.35); }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    background: var(--navy);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 12px;
+    color: var(--white);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transform: translateX(120%);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 200;
+    max-width: 300px;
+  }
+  .toast.show { transform: translateX(0); }
+  .toast-title { color: var(--gold); font-weight: 700; margin-bottom: 3px; }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .site-header, .action-bar, .progress-bar-wrap { display: none; }
+    .form-wrap { margin: 0; padding: 0; max-width: 100%; }
+    .section { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; margin-bottom: 12px; }
+    button { display: none; }
+  }
+
+  @media (max-width: 680px) {
+    .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .col-span-2, .col-span-3 { grid-column: span 1; }
+    .header-title h1 { font-size: 13px; }
+    .confidential-badge { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="logo-mark">R</div>
+      <div class="logo-text">
+        <div class="logo-name">Retirement-Right</div>
+        <div class="logo-sub">Financial Architecture · Chandler, AZ</div>
+      </div>
+    </div>
+    <div class="header-title">
+      <h1>Client Intake Questionnaire</h1>
+      <p>Complete all sections · Upload to populate the analysis tool</p>
+    </div>
+    <div class="confidential-badge">Confidential</div>
+  </div>
+</header>
+
+<!-- PROGRESS -->
+<div class="progress-bar-wrap">
+  <div class="progress-bar-inner">
+    <span class="progress-label">COMPLETION</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-label" id="progressPct">0%</span>
+  </div>
+</div>
+
+<div class="form-wrap">
+<form id="intakeForm" novalidate>
+
+<!-- ── SECTION 1: Personal Information ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">Personal Information</div>
+  </div>
+  <div class="section-body">
+    <div class="subsection-label">Client</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>First Name <span class="req">*</span></label>
+        <input type="text" name="client_first" placeholder="George" required>
+      </div>
+      <div class="field">
+        <label>Last Name <span class="req">*</span></label>
+        <input type="text" name="client_last" placeholder="Somebody" required>
+      </div>
+      <div class="field">
+        <label>Date of Birth <span class="req">*</span></label>
+        <input type="date" name="client_dob" required>
+      </div>
+      <div class="field col-span-2">
+        <label>Email Address</label>
+        <input type="email" name="client_email" placeholder="george@email.com">
+      </div>
+      <div class="field">
+        <label>State of Residence <span class="req">*</span></label>
+        <select name="state">
+          <option value="">Select state…</option>
+          <option value="AZ" selected>AZ – Arizona</option>
+          <option value="AL">AL – Alabama</option><option value="AK">AK – Alaska</option>
+          <option value="AR">AR – Arkansas</option><option value="CA">CA – California</option>
+          <option value="CO">CO – Colorado</option><option value="CT">CT – Connecticut</option>
+          <option value="DE">DE – Delaware</option><option value="FL">FL – Florida</option>
+          <option value="GA">GA – Georgia</option><option value="HI">HI – Hawaii</option>
+          <option value="ID">ID – Idaho</option><option value="IL">IL – Illinois</option>
+          <option value="IN">IN – Indiana</option><option value="IA">IA – Iowa</option>
+          <option value="KS">KS – Kansas</option><option value="KY">KY – Kentucky</option>
+          <option value="LA">LA – Louisiana</option><option value="ME">ME – Maine</option>
+          <option value="MD">MD – Maryland</option><option value="MA">MA – Massachusetts</option>
+          <option value="MI">MI – Michigan</option><option value="MN">MN – Minnesota</option>
+          <option value="MS">MS – Mississippi</option><option value="MO">MO – Missouri</option>
+          <option value="MT">MT – Montana</option><option value="NE">NE – Nebraska</option>
+          <option value="NV">NV – Nevada</option><option value="NH">NH – New Hampshire</option>
+          <option value="NJ">NJ – New Jersey</option><option value="NM">NM – New Mexico</option>
+          <option value="NY">NY – New York</option><option value="NC">NC – North Carolina</option>
+          <option value="ND">ND – North Dakota</option><option value="OH">OH – Ohio</option>
+          <option value="OK">OK – Oklahoma</option><option value="OR">OR – Oregon</option>
+          <option value="PA">PA – Pennsylvania</option><option value="RI">RI – Rhode Island</option>
+          <option value="SC">SC – South Carolina</option><option value="SD">SD – South Dakota</option>
+          <option value="TN">TN – Tennessee</option><option value="TX">TX – Texas</option>
+          <option value="UT">UT – Utah</option><option value="VT">VT – Vermont</option>
+          <option value="VA">VA – Virginia</option><option value="WA">WA – Washington</option>
+          <option value="WV">WV – West Virginia</option><option value="WI">WI – Wisconsin</option>
+          <option value="WY">WY – Wyoming</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="subsection-label">Spouse / Partner</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>First Name</label>
+        <input type="text" name="spouse_first" placeholder="Wife">
+      </div>
+      <div class="field">
+        <label>Last Name</label>
+        <input type="text" name="spouse_last" placeholder="Somebody">
+      </div>
+      <div class="field">
+        <label>Date of Birth</label>
+        <input type="date" name="spouse_dob">
+      </div>
+      <div class="field col-span-3">
+        <label>Spouse Email Address</label>
+        <input type="email" name="spouse_email" placeholder="spouse@email.com">
+      </div>
+    </div>
+
+    <hr class="divider">
+    <div class="grid-2">
+      <div class="field">
+        <label>Filing Status <span class="req">*</span></label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="filing_status" value="single"><span>Single</span></label>
+          <label class="check-item"><input type="radio" name="filing_status" value="mfj" checked><span>Married Filing Jointly</span></label>
+          <label class="check-item"><input type="radio" name="filing_status" value="mfs"><span>Married Filing Separately</span></label>
+          <label class="check-item"><input type="radio" name="filing_status" value="hoh"><span>Head of Household</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Client Health</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="client_health" value="excellent"><span>Excellent</span></label>
+          <label class="check-item"><input type="radio" name="client_health" value="good" checked><span>Good</span></label>
+          <label class="check-item"><input type="radio" name="client_health" value="fair"><span>Fair</span></label>
+          <label class="check-item"><input type="radio" name="client_health" value="poor"><span>Poor</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Spouse Health</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="spouse_health" value="excellent"><span>Excellent</span></label>
+          <label class="check-item"><input type="radio" name="spouse_health" value="good" checked><span>Good</span></label>
+          <label class="check-item"><input type="radio" name="spouse_health" value="fair"><span>Fair</span></label>
+          <label class="check-item"><input type="radio" name="spouse_health" value="poor"><span>Poor</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 2: Retirement Goals ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">Retirement Goals</div>
+  </div>
+  <div class="section-body">
+    <div class="grid-3">
+      <div class="field">
+        <label>Client Target Retirement Age <span class="req">*</span></label>
+        <input type="number" name="client_retire_age" placeholder="e.g. 67" min="50" max="85">
+      </div>
+      <div class="field">
+        <label>Spouse Target Retirement Age</label>
+        <input type="number" name="spouse_retire_age" placeholder="e.g. 63" min="50" max="85">
+      </div>
+      <div class="field">
+        <label>Annual Spending Need in Retirement <span class="req">*</span></label>
+        <div class="input-prefix">
+          <input type="number" name="annual_spend" placeholder="90,000" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Client Planning Horizon <span class="hint">end age</span></label>
+        <input type="number" name="client_horizon" placeholder="e.g. 90" min="70" max="100">
+      </div>
+      <div class="field">
+        <label>Spouse Planning Horizon <span class="hint">end age</span></label>
+        <input type="number" name="spouse_horizon" placeholder="e.g. 90" min="70" max="100">
+      </div>
+      <div class="field">
+        <label>Legacy / Inheritance Goal</label>
+        <div class="input-prefix">
+          <input type="number" name="legacy_goal" placeholder="leave blank if none" min="0">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 3: Employment & Income ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">Employment & Working Income</div>
+    <span class="section-subtitle">Pre-retirement</span>
+  </div>
+  <div class="section-body">
+    <div class="subsection-label">Salaries</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Client Annual Salary <span class="req">*</span></label>
+        <div class="input-prefix">
+          <input type="number" name="client_salary" placeholder="75,000" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Spouse Annual Salary</label>
+        <div class="input-prefix">
+          <input type="number" name="spouse_salary" placeholder="44,000" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Annual Salary Escalation Rate</label>
+        <div class="input-suffix">
+          <input type="number" name="salary_escalation" placeholder="3" min="0" max="20" step="0.1">
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection-label">Client 401(k) / IRA Contributions</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Client Annual Contribution</label>
+        <div class="input-prefix">
+          <input type="number" name="client_401k_contrib" placeholder="23,000" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Client Employer Match / Year</label>
+        <div class="input-prefix">
+          <input type="number" name="client_employer_match" placeholder="3,000" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Client Contribution Type</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="client_contrib_type" value="pretax" checked><span>Pre-Tax (Traditional)</span></label>
+          <label class="check-item"><input type="radio" name="client_contrib_type" value="roth"><span>Roth</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection-label">Spouse 401(k) / IRA Contributions</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Spouse Annual Contribution</label>
+        <div class="input-prefix">
+          <input type="number" name="spouse_401k_contrib" placeholder="7,500" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Spouse Employer Match / Year</label>
+        <div class="input-prefix">
+          <input type="number" name="spouse_employer_match" placeholder="1,500" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Spouse Contribution Type</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="spouse_contrib_type" value="pretax" checked><span>Pre-Tax (Traditional)</span></label>
+          <label class="check-item"><input type="radio" name="spouse_contrib_type" value="roth"><span>Roth</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 4: Social Security ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">Social Security</div>
+  </div>
+  <div class="section-body">
+    <div class="info-box"><strong>Tip:</strong> Monthly benefit amounts come from the client's SSA statement. Planned claiming age is a key planning decision — confirm with client before entering.</div>
+
+    <div class="subsection-label">Client Social Security</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Monthly Benefit at FRA <span class="req">*</span></label>
+        <div class="input-prefix">
+          <input type="number" name="client_ss_fra" placeholder="3,000" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Full Retirement Age (FRA) <span class="req">*</span></label>
+        <input type="number" name="client_fra" placeholder="67" min="62" max="70">
+      </div>
+      <div class="field">
+        <label>Planned Claiming Age <span class="req">*</span></label>
+        <input type="number" name="client_claim_age" placeholder="67" min="62" max="70">
+      </div>
+      <div class="field">
+        <label>Currently Collecting SS?</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="client_ss_collecting" value="yes"><span>Yes</span></label>
+          <label class="check-item"><input type="radio" name="client_ss_collecting" value="no" checked><span>No</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection-label">Spouse Social Security</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Monthly Benefit at FRA</label>
+        <div class="input-prefix">
+          <input type="number" name="spouse_ss_fra" placeholder="2,800" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Full Retirement Age (FRA)</label>
+        <input type="number" name="spouse_fra" placeholder="67" min="62" max="70">
+      </div>
+      <div class="field">
+        <label>Planned Claiming Age</label>
+        <input type="number" name="spouse_claim_age" placeholder="65" min="62" max="70">
+      </div>
+      <div class="field">
+        <label>Currently Collecting SS?</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="spouse_ss_collecting" value="yes"><span>Yes</span></label>
+          <label class="check-item"><input type="radio" name="spouse_ss_collecting" value="no" checked><span>No</span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 5: Pension ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">Pension Income</div>
+    <span class="section-subtitle">Leave blank if none</span>
+  </div>
+  <div class="section-body">
+    <div class="subsection-label">Client Pension</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Monthly Pension Amount</label>
+        <div class="input-prefix">
+          <input type="number" name="client_pension_amt" placeholder="1,200" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Amount Frequency</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="client_pension_freq" value="monthly" checked><span>Monthly</span></label>
+          <label class="check-item"><input type="radio" name="client_pension_freq" value="annual"><span>Annual</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Pension Start Age</label>
+        <input type="number" name="client_pension_start" placeholder="65" min="50" max="80">
+      </div>
+      <div class="field">
+        <label>COLA Rate</label>
+        <div class="input-suffix">
+          <input type="number" name="client_pension_cola" placeholder="0" min="0" max="10" step="0.1">
+        </div>
+      </div>
+      <div class="field">
+        <label>Survivor Benefit</label>
+        <div class="input-suffix">
+          <input type="number" name="client_pension_survivor" placeholder="50" min="0" max="100">
+        </div>
+      </div>
+      <div class="field">
+        <label>Pension Source / Plan Name</label>
+        <input type="text" name="client_pension_source" placeholder="e.g. ASRS, City of Phoenix">
+      </div>
+    </div>
+
+    <div class="subsection-label">Spouse Pension</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Monthly Pension Amount</label>
+        <div class="input-prefix">
+          <input type="number" name="spouse_pension_amt" placeholder="800" min="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Amount Frequency</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="spouse_pension_freq" value="monthly" checked><span>Monthly</span></label>
+          <label class="check-item"><input type="radio" name="spouse_pension_freq" value="annual"><span>Annual</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Pension Start Age</label>
+        <input type="number" name="spouse_pension_start" placeholder="62" min="50" max="80">
+      </div>
+      <div class="field">
+        <label>COLA Rate</label>
+        <div class="input-suffix">
+          <input type="number" name="spouse_pension_cola" placeholder="0" min="0" max="10" step="0.1">
+        </div>
+      </div>
+      <div class="field">
+        <label>Survivor Benefit</label>
+        <div class="input-suffix">
+          <input type="number" name="spouse_pension_survivor" placeholder="50" min="0" max="100">
+        </div>
+      </div>
+      <div class="field">
+        <label>Pension Source / Plan Name</label>
+        <input type="text" name="spouse_pension_source" placeholder="e.g. State Pension, PSPRS">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 6: Assets ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div class="section-title">Asset Inventory</div>
+    <span class="section-subtitle">Current balances</span>
+  </div>
+  <div class="section-body">
+
+    <div class="subsection-label">Client Accounts</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Client IRA Balance <span class="hint">Traditional</span></label>
+        <div class="input-prefix"><input type="number" name="client_ira" placeholder="375,000" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Client 401(k) Balance</label>
+        <div class="input-prefix"><input type="number" name="client_401k" placeholder="50,000" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Client Roth IRA Balance</label>
+        <div class="input-prefix"><input type="number" name="client_roth" placeholder="0" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Client Taxable Brokerage</label>
+        <div class="input-prefix"><input type="number" name="client_taxable" placeholder="80,000" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Client Annuity Balance <span class="hint">tax-deferred</span></label>
+        <div class="input-prefix"><input type="number" name="client_annuity" placeholder="0" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Other Client Account <span class="hint">label &amp; amount</span></label>
+        <input type="text" name="client_other_label" placeholder="Account name / description">
+      </div>
+      <div class="field">
+        <label>Other Client Account Balance</label>
+        <div class="input-prefix"><input type="number" name="client_other_amt" placeholder="0" min="0"></div>
+      </div>
+    </div>
+
+    <div class="subsection-label">Spouse Accounts</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Spouse IRA Balance <span class="hint">Traditional</span></label>
+        <div class="input-prefix"><input type="number" name="spouse_ira" placeholder="50,000" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Spouse 401(k) Balance</label>
+        <div class="input-prefix"><input type="number" name="spouse_401k" placeholder="27,000" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Spouse Roth IRA Balance</label>
+        <div class="input-prefix"><input type="number" name="spouse_roth" placeholder="0" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Spouse Taxable Brokerage</label>
+        <div class="input-prefix"><input type="number" name="spouse_taxable" placeholder="0" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Spouse Annuity Balance <span class="hint">tax-deferred</span></label>
+        <div class="input-prefix"><input type="number" name="spouse_annuity" placeholder="0" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Other Spouse Account <span class="hint">label &amp; amount</span></label>
+        <input type="text" name="spouse_other_label" placeholder="Account name / description">
+      </div>
+      <div class="field">
+        <label>Other Spouse Account Balance</label>
+        <div class="input-prefix"><input type="number" name="spouse_other_amt" placeholder="0" min="0"></div>
+      </div>
+    </div>
+
+    <div class="subsection-label">Inherited IRA — 10-Year Rule <span style="font-weight:400;color:var(--gray-500);font-size:10px;letter-spacing:0;">(complete only if applicable)</span></div>
+    <div class="info-box"><strong>Important:</strong> Identify whose account this is and the original owner's relationship. Non-spouse beneficiaries who inherited after Jan 1, 2020 must fully distribute within 10 years. Spouse beneficiaries may have different options.</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Inherited IRA Balance</label>
+        <div class="input-prefix"><input type="number" name="inh_ira_bal" placeholder="125,000" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Year Inherited</label>
+        <input type="number" name="inh_ira_year" placeholder="2025" min="2020" max="2035">
+      </div>
+      <div class="field">
+        <label>Whose Account?</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="inh_ira_owner" value="client"><span>Client</span></label>
+          <label class="check-item"><input type="radio" name="inh_ira_owner" value="spouse"><span>Spouse</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Original Owner Name &amp; Relationship</label>
+        <input type="text" name="inh_ira_original_owner" placeholder="e.g. Linda's father, John Smith">
+      </div>
+      <div class="field">
+        <label>Beneficiary Type</label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="inh_ira_bene_type" value="non-spouse"><span>Non-Spouse</span></label>
+          <label class="check-item"><input type="radio" name="inh_ira_bene_type" value="spouse"><span>Spouse</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <label>Distribution Strategy</label>
+        <select name="inh_ira_strategy">
+          <option value="even">Even distribution over 10 years</option>
+          <option value="backloaded">Backloaded (larger later years)</option>
+          <option value="custom">Custom / Advisor-directed</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="subsection-label">Shared / Real Estate / Other</div>
+    <div class="grid-3">
+      <div class="field">
+        <label>Primary Residence Value</label>
+        <div class="input-prefix"><input type="number" name="home_value" placeholder="550,000" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Mortgage Balance</label>
+        <div class="input-prefix"><input type="number" name="mortgage_bal" placeholder="0" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Real Estate Equity <span class="hint">value minus mortgage</span></label>
+        <div class="input-prefix"><input type="number" name="re_equity" placeholder="550,000" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Savings / Cash on Hand <span class="hint">joint</span></label>
+        <div class="input-prefix"><input type="number" name="cash" placeholder="10,000" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Net Rental Income / Year</label>
+        <div class="input-prefix"><input type="number" name="rental_income" placeholder="0" min="0"></div>
+      </div>
+      <div class="field">
+        <label>Other Assets <span class="hint">label &amp; amount</span></label>
+        <input type="text" name="other_assets" placeholder="e.g. Business equity $250,000">
+      </div>
+    </div>
+
+    <!-- Running Total -->
+    <div style="margin-top:16px;padding:12px 16px;background:var(--navy);border-radius:8px;display:flex;gap:24px;flex-wrap:wrap;align-items:center;">
+      <span style="font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;">Calculated Totals</span>
+      <div style="display:flex;gap:6px;align-items:baseline;">
+        <span style="font-size:10px;color:rgba(255,255,255,0.45);">PRE-TAX</span>
+        <span id="totalPreTax" style="font-family:'Playfair Display',serif;color:var(--gold);font-size:16px;font-weight:600;">$0</span>
+      </div>
+      <div style="display:flex;gap:6px;align-items:baseline;">
+        <span style="font-size:10px;color:rgba(255,255,255,0.45);">TOTAL INVESTABLE</span>
+        <span id="totalInvestable" style="font-family:'Playfair Display',serif;color:var(--gold);font-size:16px;font-weight:600;">$0</span>
+      </div>
+      <div style="display:flex;gap:6px;align-items:baseline;">
+        <span style="font-size:10px;color:rgba(255,255,255,0.45);">TOTAL NET ASSETS</span>
+        <span id="totalNet" style="font-family:'Playfair Display',serif;color:var(--gold);font-size:16px;font-weight:600;">$0</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 7: Tax Strategy ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div class="section-title">Tax Strategy</div>
+  </div>
+  <div class="section-body">
+    <div class="grid-2">
+      <div class="field">
+        <label>Current Marginal Federal Tax Bracket <span class="req">*</span></label>
+        <div class="check-group">
+          <label class="check-item"><input type="radio" name="tax_bracket" value="10"><span>10%</span></label>
+          <label class="check-item"><input type="radio" name="tax_bracket" value="12"><span>12%</span></label>
+          <label class="check-item"><input type="radio" name="tax_bracket" value="22" checked><span>22%</span></label>
+          <label class="check-item"><input type="radio" name="tax_bracket" value="24"><span>24%</span></label>
+          <label class="check-item"><input type="radio" name="tax_bracket" value="32"><span>32%</span></label>
+          <label class="check-item"><input type="radio" name="tax_bracket" value="35"><span>35%</span></label>
+          <label class="check-item"><input type="radio" name="tax_bracket" value="37"><span>37%</span></label>
+        </div>
+      </div>
+    </div>
+    <div class="field" style="margin-top:14px;">
+      <label>RMD / Conversion Strategy Notes <span class="hint">advisor notes for tax positioning</span></label>
+      <textarea name="tax_notes" placeholder="e.g. Strategic withdrawal sequencing to manage tax brackets; consider Roth conversions in years 63–66 before SS begins…"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 8: Projection Assumptions ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <div class="section-title">Projection Assumptions</div>
+    <span class="section-subtitle">Defaults shown — override if needed</span>
+  </div>
+  <div class="section-body">
+    <div class="grid-3">
+      <div class="field">
+        <label>Pre-Tax / IRA Growth Rate <span class="hint">default 6%</span></label>
+        <div class="input-suffix"><input type="number" name="pretax_growth" placeholder="6" min="0" max="20" step="0.1" value="6"></div>
+      </div>
+      <div class="field">
+        <label>Taxable / Brokerage Growth Rate <span class="hint">default 5%</span></label>
+        <div class="input-suffix"><input type="number" name="taxable_growth" placeholder="5" min="0" max="20" step="0.1" value="5"></div>
+      </div>
+      <div class="field">
+        <label>Roth Growth Rate <span class="hint">default 7%</span></label>
+        <div class="input-suffix"><input type="number" name="roth_growth" placeholder="7" min="0" max="20" step="0.1" value="7"></div>
+      </div>
+      <div class="field">
+        <label>Inflation Rate <span class="hint">default 2.5%</span></label>
+        <div class="input-suffix"><input type="number" name="inflation" placeholder="2.5" min="0" max="15" step="0.1" value="2.5"></div>
+      </div>
+      <div class="field">
+        <label>Real Estate Appreciation <span class="hint">default 3%</span></label>
+        <div class="input-suffix"><input type="number" name="re_growth" placeholder="3" min="0" max="15" step="0.1" value="3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SECTION 9: Advisor Notes ── -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <div class="section-title">Advisor / Analyst Notes</div>
+  </div>
+  <div class="section-body">
+    <div class="grid-2">
+      <div class="field">
+        <label>Analyst Name <span class="req">*</span></label>
+        <input type="text" name="analyst_name" placeholder="Full name of completing analyst">
+      </div>
+      <div class="field">
+        <label>Date Completed <span class="req">*</span></label>
+        <input type="date" name="date_completed">
+      </div>
+    </div>
+    <div class="field" style="margin-top:14px;">
+      <label>Special Circumstances, Planning Flags, or Client Instructions</label>
+      <textarea name="advisor_notes" style="min-height:100px;" placeholder="e.g. Client has special needs dependent; spouse has prior divorce decree affecting SS; health concern may impact timeline…"></textarea>
+    </div>
+  </div>
+</div>
+
+</form>
+</div>
+
+<!-- ACTION BAR -->
+<div class="action-bar">
+  <div class="action-inner">
+    <span class="action-note">* Required fields must be completed before saving</span>
+    <div class="btn-group">
+      <button type="button" class="btn-print" onclick="window.print()">🖨 Print</button>
+      <button type="button" class="btn-secondary" onclick="clearForm()">Clear Form</button>
+      <button type="button" class="btn-primary" onclick="saveForm()">Save as JSON ↓</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-title" id="toastTitle">Saved!</div>
+  <div id="toastMsg"></div>
+</div>
+
+<script>
+  // ── AUTO-SAVE to localStorage ──
+  const FORM_KEY = 'rr_intake_v1';
+  const form = document.getElementById('intakeForm');
+
+  function serializeForm() {
+    const data = {};
+    const fd = new FormData(form);
+    for (const [k, v] of fd.entries()) data[k] = v;
+    return data;
+  }
+
+  function loadSaved() {
+    try {
+      const raw = sessionStorage.getItem(FORM_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      for (const [k, v] of Object.entries(data)) {
+        const els = form.querySelectorAll(`[name="${k}"]`);
+        els.forEach(el => {
+          if (el.type === 'radio' || el.type === 'checkbox') {
+            el.checked = el.value === v;
+          } else {
+            el.value = v;
+          }
+        });
+      }
+    } catch(e) {}
+  }
+
+  form.addEventListener('input', () => {
+    sessionStorage.setItem(FORM_KEY, JSON.stringify(serializeForm()));
+    updateProgress();
+    updateTotals();
+  });
+  form.addEventListener('change', () => {
+    sessionStorage.setItem(FORM_KEY, JSON.stringify(serializeForm()));
+    updateProgress();
+    updateTotals();
+  });
+
+  // ── PROGRESS ──
+  function updateProgress() {
+    const required = form.querySelectorAll('[required]');
+    const inputs = form.querySelectorAll('input, select, textarea');
+    let filled = 0;
+    inputs.forEach(el => {
+      if (el.type === 'radio' || el.type === 'checkbox') return;
+      if (el.value && el.value.trim()) filled++;
+    });
+    // Count radio groups
+    const radioGroups = new Set([...form.querySelectorAll('input[type=radio]')].map(r => r.name));
+    radioGroups.forEach(name => {
+      if (form.querySelector(`[name="${name}"]:checked`)) filled++;
+    });
+    const total = inputs.length + radioGroups.size;
+    const pct = Math.min(100, Math.round((filled / total) * 100));
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  // ── ASSET TOTALS ──
+  function val(name) {
+    const el = form.querySelector(`[name="${name}"]`);
+    return el ? (parseFloat(el.value) || 0) : 0;
+  }
+  function fmt(n) {
+    return '$' + n.toLocaleString('en-US', {maximumFractionDigits: 0});
+  }
+  function updateTotals() {
+    const preTax = val('client_ira') + val('client_401k') + val('spouse_ira') + val('spouse_401k') + val('inh_ira_bal');
+    const roth = val('client_roth') + val('spouse_roth');
+    const taxable = val('client_taxable') + val('spouse_taxable');
+    const other = val('cash') + val('client_annuity') + val('spouse_annuity') + val('client_other_amt') + val('spouse_other_amt');
+    const investable = preTax + roth + taxable + other;
+    const net = investable + val('re_equity');
+    document.getElementById('totalPreTax').textContent = fmt(preTax);
+    document.getElementById('totalInvestable').textContent = fmt(investable);
+    document.getElementById('totalNet').textContent = fmt(net);
+  }
+
+  // ── SAVE JSON ──
+  function saveForm() {
+    const data = serializeForm();
+    data._saved_at = new Date().toISOString();
+    data._form_version = '1.0';
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const lastName = data.client_last || 'Client';
+    const firstName = data.client_first || '';
+    a.href = url;
+    a.download = `RR_Intake_${lastName}${firstName ? '_' + firstName : ''}_${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Saved!', 'JSON file downloaded. Upload to the analysis tool.');
+  }
+
+  function clearForm() {
+    if (!confirm('Clear all form data? This cannot be undone.')) return;
+    form.reset();
+    sessionStorage.removeItem(FORM_KEY);
+    updateProgress();
+    updateTotals();
+    showToast('Form cleared', 'All fields have been reset.');
+  }
+
+  function showToast(title, msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastTitle').textContent = title;
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // ── SET TODAY'S DATE ──
+  const today = new Date().toISOString().split('T')[0];
+  const dc = form.querySelector('[name="date_completed"]');
+  if (dc && !dc.value) dc.value = today;
+
+  // ── INIT ──
+  loadSaved();
+  updateProgress();
+  updateTotals();
+</script>
+</body>
+</html>
